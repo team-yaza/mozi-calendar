@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Calendar</title>
+    <script src="calendar.js"></script>
+    <script src="navigator.js"></script>
+    <script src="utils.js"></script>
+    <style>
+      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+      /* colors */
+      :root {
+        --color-gray: gray;
+        --color-background-gray: #e4e4e4;
+        --color-black: black;
+        --color-highlight: #4285f4;
+        --color-background-highlight: #cadcff;
+        --color-deep-blue: #0d47a1;
+        --color-deep-red: #d32f2f;
+      }
+      /* global style */
+      * {
+        box-sizing: border-box;
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Apple SD Gothic Neo", Pretendard, system-ui, -system-ui, sans-serif,
+          "Apple Color Emoji";
+      }
+
+      #navigator {
+        display: flex;
+      }
+
+      .move-month-button {
+        height: 4rem;
+        width: 12rem;
+        border-radius: 0.5rem;
+        border: 0;
+        padding: 1rem;
+        font-size: 0.8rem;
+        background-color: inherit;
+        margin: auto;
+      }
+
+      .move-month-button:hover {
+        background-color: var(--color-background-highlight);
+        cursor: pointer;
+        /* animation */
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .move-month-button:active,
+      .move-month-button:focus {
+        background-color: var(--color-background-gray);
+        /* animation */
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .month-display {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        width: 15rem;
+      }
+
+      #calendar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 3rem;
+        grid-auto-rows: 6rem;
+
+        border: 1px solid var(--color-black);
+        max-width: 1200px;
+        margin-inline: auto;
+        overflow: scroll;
+      }
+
+      .calendar-cell {
+        border: 1px solid var(--color-black);
+        padding: 0.5rem;
+        min-width: 6rem;
+      }
+
+      .past-month,
+      .next-month {
+        color: var(--color-gray);
+        background-color: var(--color-background-gray);
+      }
+
+      .sun {
+        color: var(--color-deep-red);
+      }
+
+      .sat {
+        color: var(--color-deep-blue);
+      }
+
+      .today {
+        color: var(--color-highlight);
+        background: var(--color-background-highlight);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="navigator"></div>
+    <div id="calendar"></div>
+    <script>
+      renderNavigator(document.getElementById("navigator"), new Date())
+      renderCalendar(document.getElementById("calendar"), new Date())
+    </script>
+  </body>
+</html>
